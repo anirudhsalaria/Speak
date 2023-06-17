@@ -3,22 +3,22 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import useClipboard from 'react-use-clipboard';
 import { useState } from 'react';
 import React from 'react';
-import Navbar from './Components/Navbar';
+
 
 export default function App() {
-  const [textToCopy,setTextToCopy] = useState(); 
+  const [textToCopy, setTextToCopy] = useState();
   const [isCopied, setCopied] = useClipboard(textToCopy)
-  const startListening = () => SpeechRecognition.startListening({continuous: true, language: 'en-IN'});
+  const startListening = () => SpeechRecognition.startListening({ continuous: true, language: 'en-IN' });
 
-  const {transcript,browserSupportsSpeechRecognition } = useSpeechRecognition();
+  const { transcript, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
-  if(!browserSupportsSpeechRecognition){
+  if (!browserSupportsSpeechRecognition) {
     return null
   }
 
   return (
     <>
-    <Navbar/>
+
       <div className="container">
         <h2>Speech to Text Convertor</h2>
         <br />
