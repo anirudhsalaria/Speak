@@ -1,9 +1,13 @@
 import './App.css';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import useClipboard from 'react-use-clipboard';
+import { useState } from 'react';
 import React from 'react'
 
 export default function App() {
-  SpeechRecognition.startListening({continuous: true});
+  const [textToCopy,setTextToCopy] = useState(); 
+  const [isCopied, setCopied] = useClipboard(textToCopy)
+  const startListening = () => SpeechRecognition.startListening({continuous: true, language: 'en-IN'});
 
   const {transcript,browserSupportsSpeechRecognition } = useSpeechRecognition();
 
@@ -18,14 +22,14 @@ export default function App() {
         <br />
         <p>Convert your voice to text</p>
 
-        <div className="main-content">
-          
+        <div className="main-content" onClick={() => setTextToCopy(transcript)}>
+          {transcript}
         </div>
 
         <div className="btn-style">
-          <button>Copy</button>
-          <button>Start Listening</button>
-          <button>Stop Listening</button>
+          <button onClick={setCopied}>Copy</button>
+          <button onClick={startListening}>Start Listening</button>
+          <button onClick={SpeechRecognition.stopListening}>Stop Listening</button>
         </div>
       </div>
     </>
