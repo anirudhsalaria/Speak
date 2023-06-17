@@ -2,7 +2,8 @@ import './App.css';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import useClipboard from 'react-use-clipboard';
 import { useState } from 'react';
-import React from 'react'
+import React from 'react';
+import Navbar from './Components/Navbar';
 
 export default function App() {
   const [textToCopy,setTextToCopy] = useState(); 
@@ -17,6 +18,7 @@ export default function App() {
 
   return (
     <>
+    <Navbar/>
       <div className="container">
         <h2>Speech to Text Convertor</h2>
         <br />
