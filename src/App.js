@@ -1,8 +1,16 @@
 import './App.css';
-
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import React from 'react'
 
 export default function App() {
+  SpeechRecognition.startListening({continuous: true});
+
+  const {transcript,browserSupportsSpeechRecognition } = useSpeechRecognition();
+
+  if(!browserSupportsSpeechRecognition){
+    return null
+  }
+
   return (
     <>
       <div className="container">
